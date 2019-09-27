@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 생성자 주입 -->
+			
+	<bean id="mimpl" name="kbs,mbc,sbs" class="pack.MessageImpl" scope="singleton" c:year="2000" c:myinfo-ref="myInfo" p:spec="스프링 전문가" p:fileInter-ref="outFileInterImpl">
+	<constructor-arg index="1">
+			<value>안녕</value>
+		</constructor-arg>
+		<constructor-arg index="0" type="java.lang.String">
+			<value>반가워</value>
+		</constructor-arg>
+<!-- 
+		<constructor-arg index="2" type="Int" value="2000" />
+		<constructor-arg index="3" type="pack.MyInfo" ref="myInfo" /> 위의 bean문에서  scope 뒤 c:로 연결함.
+		-->
+
+
+		<!-- setter 주입 -->
+<!-- 
+		<property name="spec">
+			<value>웹 프로그램 전문</value>
+		</property>
+		<property name="fileInter">
+			<ref bean="OutFileInterImpl" />
+		</property> 
+		 -->
+	</bean> 
+	
+	<bean id="myInfo" class="pack.MyInfo" />
+	<bean id="outFileInterImpl" class="other.OutFileInterImpl">
+		<property name="filePath" value="c:/dev/test.txt" />
+	</bean>
+</beans>
